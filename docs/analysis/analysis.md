@@ -139,7 +139,7 @@ The following diagram represents the movement of data, including reconciliation 
 The Entity Relationship Diagram (ERD) below visualizes the database schema, ensuring data integrity and supporting the complex requirements of stock reconciliation and weight-based pricing.
 
 ![Entity Relationship Diagram](../design/diagrams/ERD.png)
-*Figure 2: ER Diagram for Online Grocery Management System*
+>  *Figure 2: ER Diagram for Online Grocery Management System*
 
 ###  Entities and Relationships
 
