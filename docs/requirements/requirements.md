@@ -5,16 +5,16 @@
 ## 1. Introduction
 
 ### 1.1 Purpose
-The purpose of this document is to describe the requirements for the **Online Grocery Order Management System**. It defines system functionality, constraints, and expected behavior.
+The purpose of this document is to describe the requirements for the **Online Grocery Order Management System**, including functionality, constraints, and system behavior.
 
 ### 1.2 Scope
-A web-based application allowing customers to browse grocery products, manage carts, place orders, and make payments, while administrators manage inventory, users, and reports.
+A web-based application allowing customers to browse grocery products, manage carts, place orders, and make payments, while administrators handle inventory and reporting.
 
 ### 1.3 Objectives
-- Provide a convenient online shopping experience  
-- Enable efficient product and order management  
-- Ensure secure transactions  
-- Support business analytics for admins  
+- Provide a reliable online grocery shopping experience 
+- Enable accurate inventory and order processing 
+- Maintain secure transactions  
+- Support efficient admin operations   
 
 ---
 
@@ -55,32 +55,33 @@ The system consists of the following modules:
 ---
 
 ### 4.2 Product Management
-- [x] Add new products  
-- [x] Update product details (price, stock)  
-- [x] Delete products  
-- [x] View product list  
-- [x] Search products  
-- [x] Filter by category and price  
-- [x] Display "Out of Stock" items  
+- [x] Admin CRUD operations for products  
+- [x] Users can search and filter products   
+- [x] Display stock availability    
 - [x] Low stock alerts  
+
+**Enhancement: Real-Time Inventory Sync**
+- [x] System updates stock instantly to prevent "Ghost Stock"  
+- [x] Automatically marks items as "Out of Stock" when unavailable 
 
 ---
 
 ### 4.3 Cart Management
-- [x] Add items to cart  
-- [x] Update item quantity  
-- [x] Remove items from cart  
+- [x] Add/remove items    
+- [x] Update quantities     
 - [x] Automatic total price calculation  
 
 ---
 
 ### 4.4 Order Management
-- [x] Place orders  
+- [x] Place and cancel orders  
 - [x] View order history  
-- [x] Cancel orders  
-- [x] Update order status (Pending / Delivered)  
-- [x] Invoice generation (Subtotal, Discount, Delivery Fee, Total)  
-- [x] Delivery tracking  
+- [x] Track order status    
+- [x] Generate invoices   
+
+**Enhancement: Substitution Logic**
+- [x] Allow customers to select substitute items  
+- [x] System automatically replaces unavailable products based on user preference  
 
 ---
 
@@ -88,15 +89,23 @@ The system consists of the following modules:
 - [x] Payment processing (Card / Cash on Delivery)  
 - [x] Apply promo codes (e.g., SAVE10, FLAT500)  
 - [x] Discount calculation  
-- [x] Payment history  
+- [x] View payment history  
+
+**Enhancement: Price Adjustment System**
+- [x] Apply safety buffer for variable-weight items (e.g., vegetables)  
+- [x] Adjust final price after order confirmation  
+- [x] Refund excess charged amount if necessary  
 
 ---
 
 ### 4.6 Admin Management
 - [x] Manage users, products, and orders  
-- [x] Generate sales reports  
-- [x] Monitor stock levels  
-- [x] View most sold products  
+- [x] Generate reports  
+- [x] Monitor stock    
+
+**Enhancement: Staff-Friendly Dashboard**
+- [x] Simple and clear interface for quick order processing  
+- [x] Real-time updates for inventory and orders  
 
 ---
 
@@ -106,10 +115,15 @@ The system consists of the following modules:
 - [x] System response time within 2–3 seconds  
 - [x] Support multiple concurrent users  
 
+### Data Accuracy
+- [x] Prevent "Ghost Stock" using real-time updates  
+- [x] Ensure consistent stock levels across system  
+
 ### Security
 - [x] Password encryption  
 - [x] Secure authentication  
-- [x] Prevent duplicate accounts  
+- [x] Protection against Account Takeovers (ATO)  
+- [x] Input validation and session management  
 
 ### Usability
 - [x] User-friendly interface  
@@ -133,10 +147,31 @@ The system consists of the following modules:
 ### Constraints
 - Web-based system only  
 - Limited to card and cash-on-delivery payments  
+- No external API integrations  
 
 ---
 
-## 7. User Stories
+## 7. Key System Challenges & Impact
+
+### Data Accuracy Issues
+- "Ghost Stock" may lead to order cancellations  
+- Real-time synchronization is required  
+
+### Concurrency Issues
+- Multiple users ordering the same item can cause "Race Conditions"  
+- System must prevent overselling  
+
+### Performance Challenges
+- High traffic may slow down system  
+- Efficient processing required  
+
+### Security Risks
+- Risk of Account Takeovers (ATO)  
+- Requires strong authentication and validation  
+
+---
+
+## 8. User Stories
 
 ### Customer
 - As a user, I want to register so I can access the system  
@@ -152,34 +187,23 @@ The system consists of the following modules:
 
 ---
 
-## 8. Use Cases
-
-### Use Case: User Registration
-1. User enters details  
-2. System validates input  
-3. Account is created  
-
----
-
-### Use Case: Place Order
-1. User logs in  
-2. Adds products to cart  
-3. Proceeds to checkout  
-4. Applies promo code (optional)  
-5. Makes payment  
-6. Order is confirmed  
-
----
-
-### Use Case: Manage Products (Admin)
-1. Admin logs in  
-2. Adds/updates/deletes product  
-3. System updates product catalog  
-
----
-
-## 9. Conclusion
+## 9. Additional Enhancements (Bonus Features)
 
 This document defines the requirements for the **Online Grocery Order Management System** and serves as a foundation for design, development, and testing.
+
+### Smart Search
+- [x] Fuzzy search to handle typos 
+
+### Buy It Again
+- [x] One-click reorder of previous purchases
+
+### Route Optimization
+- [x] Optimize delivery routes for faster service  
+
+---
+
+## 10. Conclusion
+
+This document defines both basic and advanced requirements for the system, addressing real-world challenges such as inventory accuracy, concurrency, and security. It provides a strong foundation for building a reliable and scalable solution.
 
 ---
