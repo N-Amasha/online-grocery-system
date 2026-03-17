@@ -59,6 +59,7 @@ The system consists of the following modules:
 - [x] Users can search and filter products   
 - [x] Display stock availability    
 - [x] Low stock alerts  
+- [x] Stock reconciliation support for accurate inventory tracking  
 
 **Enhancement: Real-Time Inventory Sync**
 - [x] System updates stock instantly to prevent "Ghost Stock"  
@@ -78,6 +79,8 @@ The system consists of the following modules:
 - [x] View order history  
 - [x] Track order status    
 - [x] Generate invoices   
+- [x] Support actual weight input during order processing  
+- [x] Automatically adjust final order price based on measured weight  
 
 **Enhancement: Substitution Logic**
 - [x] Allow customers to select substitute items  
@@ -106,6 +109,22 @@ The system consists of the following modules:
 **Enhancement: Staff-Friendly Dashboard**
 - [x] Simple and clear interface for quick order processing  
 - [x] Real-time updates for inventory and orders  
+
+---
+
+### 4.7 Additional System Requirements
+
+#### REQ-01: Stock Reconciliation
+- [x] The system shall provide a mechanism for administrators to reconcile digital inventory with physical stock levels  
+- [x] This ensures real-time accuracy and prevents "Ghost Stock" issues  
+- [x] The system must log discrepancies and allow manual correction  
+
+---
+
+#### REQ-02: Variable Weight Entry
+- [x] The system shall allow staff to input the exact weight of variable items (e.g., vegetables, meat) during packing  
+- [x] The system shall automatically recalculate the final order price based on actual weight  
+- [x] Any price difference must be adjusted (charged/refunded) accordingly  
 
 ---
 
