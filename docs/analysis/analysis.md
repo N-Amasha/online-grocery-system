@@ -90,7 +90,7 @@ The proposed system is an **Online Grocery Order Management System** that:
 
 ## 6. Process Identification
 
-### 🔧 Key System Processes
+###  Key System Processes
 
 1. **User Management**  
    - Secure authentication and profile handling  
