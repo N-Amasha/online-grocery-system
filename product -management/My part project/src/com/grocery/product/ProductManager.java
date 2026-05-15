@@ -1,5 +1,6 @@
 package com.grocery.product;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.Statement;
 public class ProductManager {
 
     public void addProduct(Product p) {
-        String sql = "INSERT INTO products VALUES (?, ?, ?, ?, ?)";
+        String sql ="INSERT INTO products VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection con = DatabaseConnection.getConnection();
@@ -55,6 +56,41 @@ public class ProductManager {
             System.out.println(e.getMessage());
         }
     }
+
+    // my member need my view product management so i made new method
+    // because above method has not return type
+    public List<Product> getAllProducts() {
+        List<Product> productList = new ArrayList<>();
+        String sql = "SELECT * FROM products";
+
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+
+                Product p = new Product();
+                p.setId(rs.getString("product_id"));
+                p.setName(rs.getString("name"));
+                p.setCategory(rs.getString("category"));
+                p.setPrice(rs.getDouble("price"));
+                p.setQuantity(rs.getInt("quantity"));
+
+
+                productList.add(p);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error fetching products: " + e.getMessage());
+        }
+
+        return productList;
+    }
+
+
+
+
 
     public void searchProduct(String id) {
         String sql = "SELECT * FROM products WHERE product_id = ?";
