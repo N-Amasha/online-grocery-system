@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.WD38.GroceryOnline.Builders.NotificationBuilder;
+import com.WD38.GroceryOnline.ProductStuff.AdminProductOverviewer;
 import com.WD38.GroceryOnline.ProductStuff.Product;
-import com.WD38.GroceryOnline.ProductStuff.ProductManager;
-
+import com.WD38.GroceryOnline.apibodies.ProductQuantityTemplate;
 
 /* How to run this/ launch on localhost 8080:
 
@@ -34,18 +35,18 @@ just run the java.
 @CrossOrigin(origins = "*")    // without this, javascript will get nothing
 @RestController
 public class GroceryOnlineApplication {
+	static final String CONFIG_PATH_ABSOLUTE = "/home/meeee/Desktop/projects/uni stuff/project grocery/admin dashboard/backend/GroceryOnline (1)/GroceryOnline/src/main/resources/adminConfig.json";
+	static final Admin admin = new Admin(CONFIG_PATH_ABSOLUTE);
+	static AdminProductOverviewer productOverviewer = new AdminProductOverviewer();
 
 	@RequestMapping("/admin/notifications")
 	public static HashMap<String, ArrayList<HashMap<String, Object>>> notifications() {
 		// these should be changable via UI
-		final int QUANTITY_THRESHOLD = 20;
-		final int EXPIRY_THRESHOLD = 15;
 
 		NotificationBuilder notificationBuilder = new NotificationBuilder();
-		ProductManager productManager = new ProductManager();
-
-		ArrayList<Product> runOutProducts = productManager.lowStock(QUANTITY_THRESHOLD);
-		ArrayList<Product> ExpryProducts = productManager.closeToExpiry(EXPIRY_THRESHOLD);
+		
+		ArrayList<Product> runOutProducts = productOverviewer.lowStock(admin.getQuantityThreshold());
+		ArrayList<Product> ExpryProducts = productOverviewer.closeToExpiry(admin.getExpiryThreshold());
 
 		for (Product product: runOutProducts)
 			notificationBuilder.addCriticallyLowNotification(product.getName(), product.getQuantity());
@@ -53,28 +54,6 @@ public class GroceryOnlineApplication {
 			long daysTillExpiry = ChronoUnit.DAYS.between(LocalDate.now(), product.getExpDate());
 			notificationBuilder.addExpirationNotification(product.getName(), daysTillExpiry);
 		}
-		// ArrayList<String[]> all_products = Print oducts.readAll(); 
-
-		// for (String[] row: all_products) {
-		// 	// quantity check
-		// 	int current_quantity = Integer.parseInt(row[Products.QUANTITY_IND]); 
-		// 	if (current_quantity <= QUANTITY_THRESHOLD) {
-		// 		notificationBuilder.addCriticallyLowNotification(row[0], current_quantity);
-		// 	}
-		// 	// expiry check
-		// 	LocalDate item_expiryDate = GeneralUtils.getDateTimeObj(row[Products.EXP_DATE]);
-		// 	long days_till_expiry = ChronoUnit.DAYS.between(LocalDate.now(), item_expiryDate);
-		// 	if (days_till_expiry <= EXPIRY_THRESHOLD) {
-		// 		notificationBuilder.addExpirationNotification(row[0], days_till_expiry);
-		// 	}
-		// }
-		
-
-		// NotificationBuilder notification_Builder = new NotificationBuilder();
-
-		// notification_Builder.addRunOutNotification("Tomato");
-		// notification_Builder.addRunOutNotification("Cabbage");
-		// notification_Builder.addExpirationNotification("Papaya", 15);
 
 		return notificationBuilder.getNotificationsMap();
 	}
@@ -106,6 +85,43 @@ public class GroceryOnlineApplication {
 
 		return productOrderStatus;
 	}
+
+	@RequestMapping("/admin/thesholds/set")
+	public static HashMap<String, Object> setThresholds(
+		@RequestParam int expiry,
+		@RequestParam int quantity
+	) 
+	{
+		HashMap<String, Object> response = new HashMap<>();
+		
+		int updateStatus = admin.setThresholds(expiry, quantity);
+		int statusCode = (updateStatus==0)? 200: (updateStatus==-1)? 422: 500;
+		
+		response.put("code", statusCode);
+		return response;
+	}
+
+	@RequestMapping("/admin/thesholds/get")
+	public static HashMap<String, Object> sendThresholsValues() {
+		HashMap<String, Object> out = new HashMap<>();
+		out.put("quantity", admin.getQuantityThreshold());
+		out.put("expiry", admin.getExpiryThreshold());
+		return out;
+	}
+
+	@RequestMapping("admin/products/quantities/pure")
+	public static ArrayList<ProductQuantityTemplate> sendProductQuantityData() {
+		ArrayList<Product> rawProducts = productOverviewer.viewAllProducts();
+		ArrayList<ProductQuantityTemplate> out = AdminProductOverviewer.generateProductQuantityView(rawProducts);
+		return out;
+	}
+
+	// @RequestMapping("admin/products/quantities/withOrders")
+	// public static ArrayList<ProductQuantityTemplate> sendPromisedProductQuantitData() {
+	// 	ArrayList<Product> rawProducts = productOverviewer.viewAllProducts();
+		
+	// }
+
 
 	// this might be mine
 	// @RequestMapping("/admin/product_orders")

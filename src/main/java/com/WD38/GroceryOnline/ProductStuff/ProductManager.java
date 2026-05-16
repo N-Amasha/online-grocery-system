@@ -4,40 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-// import java.sql.Connection;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 
 public class ProductManager {
-
-    // private String url;
-    // private String username;
-    // private String password;     
-    
-    // private Connection con; 
-
-    // public ProductManager(
-    //         @Value("${spring.datasource.url}") String url,
-    //         @Value("${spring.datasource.username}") String username,
-    //         @Value("${spring.datasource.password}") String password        
-    // ) {
-    
-
-    //     System.out.print(this.url + ' ' + this.username + ' ' + this.password);
-
-    //     try {
-    //         this.con = DriverManager.getConnection(
-    //                 this.url,
-    //                 this.username,
-    //                 this.password
-    //         );
-    //     } catch (Exception e) {
-    //         System.out.println("Database connection failed!");
-    //         System.out.println(e.getMessage());
-    //     }        
-    // }
 
     public void addProduct(Product p) {
         String sql = "INSERT INTO products VALUES (?, ?, ?, ?, ?)";
@@ -198,88 +167,18 @@ public class ProductManager {
 
     }
 
-    public ArrayList<Product> lowStock(int threshold) {
-        String sql = "SELECT * FROM products WHERE quantity < " + threshold;
-        ArrayList<Product> out = new ArrayList<>();
-
-        try {
-            Connection con = DatabaseConnection.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
-            boolean found = false;
-
-            while (rs.next()) {
-                Product product = new Product(
-                    rs.getString("ID"), 
-                    rs.getString("Name"), 
-                    rs.getString("Category"),
-                    rs.getDouble("Price"), 
-                    rs.getInt("Quantity"), 
-                    rs.getDate("ExpDate").toLocalDate());
-
-                out.add(product);
-            }
-
-            if (!found) {
-                System.out.println("No low stock products.");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Low stock check failed!");
-            System.out.println(e.getMessage());
-        }
-
-        return out;
-
-    }
-
-    public ArrayList<Product> closeToExpiry(int days) {
-        ArrayList<Product> out = new ArrayList<>();
-
-        LocalDate currentDate = LocalDate.now();
-        LocalDate futureDate = currentDate.plusDays(days);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String dateString = futureDate.format(formatter);
-
-        try {
-            String sql = "SELECT * FROM products WHERE ExpDate < '" + dateString + "'";
-            Connection con = DatabaseConnection.getConnection();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                Product product = new Product(
-                    rs.getString("ID"), 
-                    rs.getString("Name"), 
-                    rs.getString("Category"),
-                    rs.getDouble("Price"), 
-                    rs.getInt("Quantity"), 
-                    rs.getDate("ExpDate").toLocalDate());
-
-                out.add(product);
-            }
-
-        } catch (Exception e) {
-            System.out.println("expiry check failed!");
-            System.out.println(e.getMessage());
-        }
-
-        return out;
-    }
-
     public static void main(String[] args) {
-        // myProductManager.viewProducts();
-        ProductManager myProductManager = new ProductManager();
-        ArrayList<Product> qList = myProductManager.lowStock(8);
-        ArrayList<Product> expList = myProductManager.closeToExpiry(14);
+        // // myProductManager.viewProducts();
+        // ProductManager myProductManager = new ProductManager();
+        // ArrayList<Product> qList = myProductManager.lowStock(8);
+        // ArrayList<Product> expList = myProductManager.closeToExpiry(14);
 
-        System.out.println("About to run out:");
-        for (Product item: qList)
-            item.displayDetails();
+        // System.out.println("About to run out:");
+        // for (Product item: qList)
+        //     item.displayDetails();
 
-        System.out.println("\nAbout to expire:");
-        for (Product item: expList)
-            item.displayDetails();
+        // System.out.println("\nAbout to expire:");
+        // for (Product item: expList)
+        //     item.displayDetails();
     }
 }

@@ -34,3 +34,13 @@ build/
 
 ### unimportent files ###
 src/main/java/com/WD38/GroceryOnline/ProductStuff/Products.java
+src/main/java/com/WD38/GroceryOnline/utils
+src/main/java/com/WD38/GroceryOnline/GeneralUtils
+
+### not my files ###
+src/main/java/com/WD38/GroceryOnline/ProductStuff/DatabaseConnection.java
+src/main/java/com/WD38/GroceryOnline/ProductStuff/Product.java
+src/main/java/com/WD38/GroceryOnline/ProductStuff/ProductManager.java
+src/main/java/com/WD38/GroceryOnline/orderstuff
+src/main/java/com/WD38/GroceryOnline/other
+src/main/java/com/WD38/GroceryOnline/jsonCRUD

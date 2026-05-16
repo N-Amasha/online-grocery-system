@@ -1,3 +1,4 @@
+// deprecated
 package com.WD38.GroceryOnline.other;
 
 import java.util.ArrayList;
