@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./styles.css";
 import MainBox from "./mainBox";
+import ThresholdForm from "./components/ThresholdForm"
 
 export default function Home() {
   const [showThresholdModal, setShowThresholdModal] = useState(false);
@@ -83,7 +84,12 @@ export default function Home() {
         <MainBox />
       </main>
 
-      {showThresholdModal && (
+      <ThresholdForm
+        isOpen={showThresholdModal}
+        onClose={() => setShowThresholdModal(false)}
+      />      
+
+      {/* {showThresholdModal && (
         <div className="modal-backdrop" onClick={closeThresholdModal}>
           <div
             className="threshold-modal"
@@ -142,13 +148,13 @@ export default function Home() {
                   Cancel
                 </button>
                 <button type="submit" className="apply-btn">
-                  Apply Changes
-                </button>
+                  Apply Changes */}
+                {/* </button>
               </div>
             </form>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
