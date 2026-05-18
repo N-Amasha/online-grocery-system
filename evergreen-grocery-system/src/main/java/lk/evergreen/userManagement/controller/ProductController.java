@@ -1,39 +1,50 @@
-package lk.evergreen.grocery.controller;
+package lk.evergreen.grocery.entity;
 
-import lk.evergreen.grocery.dto.ProductRequest;
-import lk.evergreen.grocery.entity.Product;
-import lk.evergreen.grocery.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-@RestController
-@RequestMapping("/api/products")
-@CrossOrigin(origins = "*")
-public class ProductController {
+@Entity
+@Table(name = "products")
+@Data
+public class Product {
 
-    @Autowired
-    private ProductService productService;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @GetMapping
-    public List<Product> list() {
-        return productService.listAll();
-    }
+    @Column(nullable = false, length = 200)
+    private String name;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> get(@PathVariable Long id) {
-        return productService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    @GetMapping("/search")
-    public List<Product> search(@RequestParam String q) {
-        return productService.search(q);
-    }
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal price;
 
+    @Column(unique = true, length = 64)
+    private String sku;
+
+    @Column(nullable = false)
+    private Integer stockQuantity = 0;
+
+    @Column(nullable = false)
+    private Boolean active = true;
+
+    @Column(length = 2048)
+    private String imageUrl;
+
+    private LocalDate manufacturingDate;
+
+    private LocalDate expiryDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 32)
+    private PricingMode pricingMode = PricingMode.WEIGHT_BASED_KG;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }
-
