@@ -21,7 +21,6 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 
@@ -34,7 +33,6 @@ public class Product {
     @Column(nullable = false)
     private Boolean active = true;
 
-
     @Column(length = 2048)
     private String imageUrl;
 
@@ -44,9 +42,9 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 32)
-    private lk.evergreen.grocery.entity.PricingMode pricingMode = lk.evergreen.grocery.entity.PricingMode.WEIGHT_BASED_KG;
+    private PricingMode pricingMode = PricingMode.WEIGHT_BASED_KG;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
-    private lk.evergreen.grocery.entity.Category category;
+    private Category category;
 }
