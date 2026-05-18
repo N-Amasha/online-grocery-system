@@ -21,7 +21,7 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    /** Public selling price in LKR; meaning depends on {@link #pricingMode}. */
+    
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 
@@ -34,7 +34,7 @@ public class Product {
     @Column(nullable = false)
     private Boolean active = true;
 
-    /** Optional absolute or CDN URL for list/detail images (upload flow stores path/URL here). */
+    
     @Column(length = 2048)
     private String imageUrl;
 
