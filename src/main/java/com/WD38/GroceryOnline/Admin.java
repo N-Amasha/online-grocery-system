@@ -5,9 +5,7 @@ import java.io.File;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ObjectNode;
 
-// 422
-// TODO: split this into this, static 
-// TODO: maybe seperate file logic
+
 public class Admin {
     private static final String QUANTITY_KEYWORD = "quantity threshold";
     private static final String EXPIRY_KEYWORD = "expiry threshold";

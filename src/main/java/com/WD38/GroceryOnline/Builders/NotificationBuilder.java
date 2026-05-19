@@ -16,7 +16,7 @@ public class NotificationBuilder {
 
     public void addCriticallyLowNotification(String item, int quantity){
         HashMap<String, Object> OutNottification = new HashMap<>();
-        OutNottification.put("type", "critically-low");
+        OutNottification.put("type", "Critically low stock");
         OutNottification.put("item", item);
         OutNottification.put("quantity", quantity);
         this.notificationList.add(OutNottification);
@@ -25,9 +25,18 @@ public class NotificationBuilder {
     
     public void addExpirationNotification(String item, long timeTillExpiry){
         HashMap<String, Object> OutNottification = new HashMap<>();
-        OutNottification.put("type", "expiration");
-        OutNottification.put("item", item);
-        OutNottification.put("time", timeTillExpiry);
+
+        if (timeTillExpiry > 0){
+            OutNottification.put("type", "Close to expiry");
+            OutNottification.put("item", item);
+            OutNottification.put("time", timeTillExpiry);
+        }
+        else {
+            OutNottification.put("type", "Expired");
+            OutNottification.put("item", item);
+            OutNottification.put("time", -timeTillExpiry);
+        }
+
         this.notificationList.add(OutNottification);
     }
 

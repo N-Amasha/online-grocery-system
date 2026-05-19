@@ -1,0 +1,443 @@
+[
+  {
+    "customerName": "Fresh Farms Suppliers",
+    "id": 1,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "apple",
+        "quantity": 20,
+        "unitPrice": 25.0,
+        "productID": "PID001",
+        "itemDetails": "apple x 20 @ Rs.25.0 = Rs.500.0"
+      },
+      {
+        "itemName": "banana",
+        "quantity": 15,
+        "unitPrice": 18.0,
+        "productID": "PID008",
+        "itemDetails": "banana x 15 @ Rs.18.0 = Rs.270.0"
+      }
+    ],
+    "status": "Pending"
+  },
+  {
+    "customerName": "John Perera",
+    "id": 2,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "milk 1L",
+        "quantity": 3,
+        "unitPrice": 220.0,
+        "productID": "PID011",
+        "itemDetails": "milk 1L x 3 @ Rs.220.0 = Rs.660.0"
+      },
+      {
+        "itemName": "bread",
+        "quantity": 2,
+        "unitPrice": 95.0,
+        "productID": "PID023",
+        "itemDetails": "bread x 2 @ Rs.95.0 = Rs.190.0"
+      }
+    ],
+    "status": "packing"
+  },
+  {
+    "customerName": "Green Valley Distributors",
+    "id": 3,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "rice 5kg",
+        "quantity": 10,
+        "unitPrice": 850.0,
+        "productID": "PID014",
+        "itemDetails": "rice 5kg x 10 @ Rs.850.0 = Rs.8500.0"
+      },
+      {
+        "itemName": "sugar 1kg",
+        "quantity": 12,
+        "unitPrice": 210.0,
+        "productID": "PID017",
+        "itemDetails": "sugar 1kg x 12 @ Rs.210.0 = Rs.2520.0"
+      }
+    ],
+    "status": "in-transit"
+  },
+  {
+    "customerName": "Nadeesha Silva",
+    "id": 4,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "butter",
+        "quantity": 1,
+        "unitPrice": 480.0,
+        "productID": "PID021",
+        "itemDetails": "butter x 1 @ Rs.480.0 = Rs.480.0"
+      },
+      {
+        "itemName": "eggs",
+        "quantity": 12,
+        "unitPrice": 35.0,
+        "productID": "PID005",
+        "itemDetails": "eggs x 12 @ Rs.35.0 = Rs.420.0"
+      }
+    ],
+    "status": "received"
+  },
+  {
+    "customerName": "Ocean Foods Pvt Ltd",
+    "id": 5,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "tuna can",
+        "quantity": 24,
+        "unitPrice": 320.0,
+        "productID": "PID030",
+        "itemDetails": "tuna can x 24 @ Rs.320.0 = Rs.7680.0"
+      },
+      {
+        "itemName": "sardines",
+        "quantity": 18,
+        "unitPrice": 180.0,
+        "productID": "PID031",
+        "itemDetails": "sardines x 18 @ Rs.180.0 = Rs.3240.0"
+      }
+    ],
+    "status": "Pending"
+  },
+  {
+    "customerName": "Kasun Fernando",
+    "id": 6,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "orange juice",
+        "quantity": 2,
+        "unitPrice": 350.0,
+        "productID": "PID027",
+        "itemDetails": "orange juice x 2 @ Rs.350.0 = Rs.700.0"
+      },
+      {
+        "itemName": "biscuits",
+        "quantity": 4,
+        "unitPrice": 120.0,
+        "productID": "PID019",
+        "itemDetails": "biscuits x 4 @ Rs.120.0 = Rs.480.0"
+      }
+    ],
+    "status": "cancelled"
+  },
+  {
+    "customerName": "Lanka Dairy Suppliers",
+    "id": 7,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "cheese",
+        "quantity": 10,
+        "unitPrice": 620.0,
+        "productID": "PID022",
+        "itemDetails": "cheese x 10 @ Rs.620.0 = Rs.6200.0"
+      },
+      {
+        "itemName": "yogurt",
+        "quantity": 30,
+        "unitPrice": 85.0,
+        "productID": "PID024",
+        "itemDetails": "yogurt x 30 @ Rs.85.0 = Rs.2550.0"
+      }
+    ],
+    "status": "received"
+  },
+  {
+    "customerName": "Sahan Wickramasinghe",
+    "id": 8,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "tomato",
+        "quantity": 3,
+        "unitPrice": 140.0,
+        "productID": "PID009",
+        "itemDetails": "tomato x 3 @ Rs.140.0 = Rs.420.0"
+      },
+      {
+        "itemName": "onion",
+        "quantity": 2,
+        "unitPrice": 180.0,
+        "productID": "PID010",
+        "itemDetails": "onion x 2 @ Rs.180.0 = Rs.360.0"
+      }
+    ],
+    "status": "packing"
+  },
+  {
+    "customerName": "Sunrise Bakers Wholesale",
+    "id": 9,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "flour 1kg",
+        "quantity": 40,
+        "unitPrice": 160.0,
+        "productID": "PID032",
+        "itemDetails": "flour 1kg x 40 @ Rs.160.0 = Rs.6400.0"
+      },
+      {
+        "itemName": "yeast",
+        "quantity": 25,
+        "unitPrice": 75.0,
+        "productID": "PID033",
+        "itemDetails": "yeast x 25 @ Rs.75.0 = Rs.1875.0"
+      }
+    ],
+    "status": "in-transit"
+  },
+  {
+    "customerName": "Dilini Rodrigo",
+    "id": 10,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "soap",
+        "quantity": 5,
+        "unitPrice": 130.0,
+        "productID": "PID040",
+        "itemDetails": "soap x 5 @ Rs.130.0 = Rs.650.0"
+      },
+      {
+        "itemName": "shampoo",
+        "quantity": 1,
+        "unitPrice": 780.0,
+        "productID": "PID041",
+        "itemDetails": "shampoo x 1 @ Rs.780.0 = Rs.780.0"
+      }
+    ],
+    "status": "Pending"
+  },
+  {
+    "customerName": "Ceylon Fresh Produce",
+    "id": 11,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "carrot",
+        "quantity": 25,
+        "unitPrice": 95.0,
+        "productID": "PID042",
+        "itemDetails": "carrot x 25 @ Rs.95.0 = Rs.2375.0"
+      },
+      {
+        "itemName": "potato",
+        "quantity": 30,
+        "unitPrice": 120.0,
+        "productID": "PID043",
+        "itemDetails": "potato x 30 @ Rs.120.0 = Rs.3600.0"
+      }
+    ],
+    "status": "Pending"
+  },
+  {
+    "customerName": "Tharindu Jayasinghe",
+    "id": 12,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "ice cream",
+        "quantity": 2,
+        "unitPrice": 550.0,
+        "productID": "PID044",
+        "itemDetails": "ice cream x 2 @ Rs.550.0 = Rs.1100.0"
+      },
+      {
+        "itemName": "soft drink",
+        "quantity": 4,
+        "unitPrice": 180.0,
+        "productID": "PID045",
+        "itemDetails": "soft drink x 4 @ Rs.180.0 = Rs.720.0"
+      }
+    ],
+    "status": "packing"
+  },
+  {
+    "customerName": "Golden Harvest Suppliers",
+    "id": 13,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "lentils 1kg",
+        "quantity": 18,
+        "unitPrice": 290.0,
+        "productID": "PID046",
+        "itemDetails": "lentils 1kg x 18 @ Rs.290.0 = Rs.5220.0"
+      },
+      {
+        "itemName": "chickpeas 1kg",
+        "quantity": 15,
+        "unitPrice": 310.0,
+        "productID": "PID047",
+        "itemDetails": "chickpeas 1kg x 15 @ Rs.310.0 = Rs.4650.0"
+      }
+    ],
+    "status": "in-transit"
+  },
+  {
+    "customerName": "Shalini Peris",
+    "id": 14,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "toothpaste",
+        "quantity": 2,
+        "unitPrice": 340.0,
+        "productID": "PID048",
+        "itemDetails": "toothpaste x 2 @ Rs.340.0 = Rs.680.0"
+      },
+      {
+        "itemName": "toothbrush",
+        "quantity": 3,
+        "unitPrice": 150.0,
+        "productID": "PID049",
+        "itemDetails": "toothbrush x 3 @ Rs.150.0 = Rs.450.0"
+      }
+    ],
+    "status": "received"
+  },
+  {
+    "customerName": "Metro Beverage Distributors",
+    "id": 15,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "mineral water",
+        "quantity": 50,
+        "unitPrice": 80.0,
+        "productID": "PID050",
+        "itemDetails": "mineral water x 50 @ Rs.80.0 = Rs.4000.0"
+      },
+      {
+        "itemName": "energy drink",
+        "quantity": 20,
+        "unitPrice": 260.0,
+        "productID": "PID051",
+        "itemDetails": "energy drink x 20 @ Rs.260.0 = Rs.5200.0"
+      }
+    ],
+    "status": "cancelled"
+  },
+  {
+    "customerName": "Ayesha Fernando",
+    "id": 16,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "chocolate",
+        "quantity": 6,
+        "unitPrice": 220.0,
+        "productID": "PID052",
+        "itemDetails": "chocolate x 6 @ Rs.220.0 = Rs.1320.0"
+      },
+      {
+        "itemName": "cookies",
+        "quantity": 3,
+        "unitPrice": 280.0,
+        "productID": "PID053",
+        "itemDetails": "cookies x 3 @ Rs.280.0 = Rs.840.0"
+      }
+    ],
+    "status": "Pending"
+  },
+  {
+    "customerName": "Highland Meat Suppliers",
+    "id": 17,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "chicken 1kg",
+        "quantity": 22,
+        "unitPrice": 1250.0,
+        "productID": "PID054",
+        "itemDetails": "chicken 1kg x 22 @ Rs.1250.0 = Rs.27500.0"
+      },
+      {
+        "itemName": "sausages",
+        "quantity": 14,
+        "unitPrice": 620.0,
+        "productID": "PID055",
+        "itemDetails": "sausages x 14 @ Rs.620.0 = Rs.8680.0"
+      }
+    ],
+    "status": "received"
+  },
+  {
+    "customerName": "Ravindu Senanayake",
+    "id": 18,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "tea packets",
+        "quantity": 2,
+        "unitPrice": 490.0,
+        "productID": "PID056",
+        "itemDetails": "tea packets x 2 @ Rs.490.0 = Rs.980.0"
+      },
+      {
+        "itemName": "sugar 1kg",
+        "quantity": 1,
+        "unitPrice": 210.0,
+        "productID": "PID017",
+        "itemDetails": "sugar 1kg x 1 @ Rs.210.0 = Rs.210.0"
+      }
+    ],
+    "status": "packing"
+  },
+  {
+    "customerName": "Island Spice Traders",
+    "id": 19,
+    "isCustomer": false,
+    "items": [
+      {
+        "itemName": "curry powder",
+        "quantity": 35,
+        "unitPrice": 140.0,
+        "productID": "PID057",
+        "itemDetails": "curry powder x 35 @ Rs.140.0 = Rs.4900.0"
+      },
+      {
+        "itemName": "pepper",
+        "quantity": 12,
+        "unitPrice": 420.0,
+        "productID": "PID058",
+        "itemDetails": "pepper x 12 @ Rs.420.0 = Rs.5040.0"
+      }
+    ],
+    "status": "in-transit"
+  },
+  {
+    "customerName": "Nimali Gunawardena",
+    "id": 20,
+    "isCustomer": true,
+    "items": [
+      {
+        "itemName": "detergent",
+        "quantity": 2,
+        "unitPrice": 780.0,
+        "productID": "PID059",
+        "itemDetails": "detergent x 2 @ Rs.780.0 = Rs.1560.0"
+      },
+      {
+        "itemName": "dishwash liquid",
+        "quantity": 1,
+        "unitPrice": 420.0,
+        "productID": "PID060",
+        "itemDetails": "dishwash liquid x 1 @ Rs.420.0 = Rs.420.0"
+      }
+    ],
+    "status": "received"
+  }
+
+]

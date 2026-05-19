@@ -1,4 +1,4 @@
 {
-  "expiry threshold" : 15,
-  "quantity threshold" : 5
+  "expiry threshold" : 10,
+  "quantity threshold" : 8
 }

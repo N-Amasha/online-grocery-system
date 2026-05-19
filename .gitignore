@@ -43,4 +43,4 @@ src/main/java/com/WD38/GroceryOnline/ProductStuff/Product.java
 src/main/java/com/WD38/GroceryOnline/ProductStuff/ProductManager.java
 src/main/java/com/WD38/GroceryOnline/orderstuff
 src/main/java/com/WD38/GroceryOnline/other
-src/main/java/com/WD38/GroceryOnline/jsonCRUD
+src/main/java/com/WD38/GroceryOnline/JsonCRUD

@@ -1,5 +1,6 @@
 package com.WD38.GroceryOnline;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.WD38.GroceryOnline.Builders.NotificationBuilder;
+import com.WD38.GroceryOnline.JsonCRUD.JSONHandler;
 import com.WD38.GroceryOnline.ProductStuff.AdminProductOverviewer;
 import com.WD38.GroceryOnline.ProductStuff.Product;
 import com.WD38.GroceryOnline.apibodies.ProductQuantityTemplate;
+import com.WD38.GroceryOnline.orderstuff.Order;
+import com.WD38.GroceryOnline.utils.ProcessOrdersToView;
 
 /* How to run this/ launch on localhost 8080:
 
@@ -34,13 +38,23 @@ just run the java.
 @SpringBootApplication
 @CrossOrigin(origins = "*")    // without this, javascript will get nothing
 @RestController
-public class GroceryOnlineApplication {
+public class AdminController {
 	static final String CONFIG_PATH_ABSOLUTE = "/home/meeee/Desktop/projects/uni stuff/project grocery/admin dashboard/backend/GroceryOnline (1)/GroceryOnline/src/main/resources/adminConfig.json";
+	static final String ORDERS_REPOSITORY_PATH = "src/main/resources/orders.json";
 	static final Admin admin = new Admin(CONFIG_PATH_ABSOLUTE);
 	static AdminProductOverviewer productOverviewer = new AdminProductOverviewer();
 
+    private final JSONHandler<Order> orderHandler;
+
+    public AdminController() throws IOException {
+        this.orderHandler = new JSONHandler<>(
+                ORDERS_REPOSITORY_PATH,
+                Order.class
+        );
+    }
+
 	@RequestMapping("/admin/notifications")
-	public static HashMap<String, ArrayList<HashMap<String, Object>>> notifications() {
+	public HashMap<String, ArrayList<HashMap<String, Object>>> notifications() {
 		// these should be changable via UI
 
 		NotificationBuilder notificationBuilder = new NotificationBuilder();
@@ -59,35 +73,29 @@ public class GroceryOnlineApplication {
 	}
 
 	@RequestMapping("/admin/customer_overview")
-	public static OrderStatusTotal customerOverview(
+	public OrderStatusTotal customerOverview(
 		@RequestParam(defaultValue="today") String timeFrame 
-	) {
-		OrderStatusTotal customerOrderStatus = new OrderStatusTotal();
-
-		customerOrderStatus.setPacking(10);
-		customerOrderStatus.setinTransit(25);
-		customerOrderStatus.setReceived(28);
-		customerOrderStatus.setCancelled(3);
-
-		return customerOrderStatus;
+	) throws IOException{
+		
+		ArrayList<Order> allOrders = this.orderHandler.readAll();
+		ArrayList<Order> customerOrders = ProcessOrdersToView.filterOrders(allOrders, true, false);
+		OrderStatusTotal out = OrderHelpers.getObjOrderOverview(customerOrders);
+		return out;
 	}
 
 	@RequestMapping("/admin/product_overview")
-	public static OrderStatusTotal productOverview(
+	public OrderStatusTotal productOverview(
 		@RequestParam(defaultValue="today") String timeFrame 
-	) {
-		OrderStatusTotal productOrderStatus = new OrderStatusTotal();
+	) throws IOException{
 
-		productOrderStatus.setPacking(3);
-		productOrderStatus.setinTransit(5);
-		productOrderStatus.setReceived(8);
-		productOrderStatus.setCancelled(1);
-
-		return productOrderStatus;
+		ArrayList<Order> allOrders = this.orderHandler.readAll();
+		ArrayList<Order> customerOrders = ProcessOrdersToView.filterOrders(allOrders, false, false);
+		OrderStatusTotal out = OrderHelpers.getObjOrderOverview(customerOrders);
+		return out;
 	}
 
-	@RequestMapping("/admin/thesholds/set")
-	public static HashMap<String, Object> setThresholds(
+	@RequestMapping("/admin/thresholds/set")
+	public HashMap<String, Object> setThresholds(
 		@RequestParam int expiry,
 		@RequestParam int quantity
 	) 
@@ -101,8 +109,8 @@ public class GroceryOnlineApplication {
 		return response;
 	}
 
-	@RequestMapping("/admin/thesholds/get")
-	public static HashMap<String, Object> sendThresholsValues() {
+	@RequestMapping("/admin/thresholds/get")
+	public HashMap<String, Object> sendThresholsValues() {
 		HashMap<String, Object> out = new HashMap<>();
 		out.put("quantity", admin.getQuantityThreshold());
 		out.put("expiry", admin.getExpiryThreshold());
@@ -110,7 +118,7 @@ public class GroceryOnlineApplication {
 	}
 
 	@RequestMapping("admin/products/quantities/pure")
-	public static ArrayList<ProductQuantityTemplate> sendProductQuantityData() {
+	public ArrayList<ProductQuantityTemplate> sendProductQuantityData() {
 		ArrayList<Product> rawProducts = productOverviewer.viewAllProducts();
 		ArrayList<ProductQuantityTemplate> out = AdminProductOverviewer.generateProductQuantityView(rawProducts);
 		return out;
@@ -123,43 +131,8 @@ public class GroceryOnlineApplication {
 	// }
 
 
-	// this might be mine
-	// @RequestMapping("/admin/product_orders")
-	// public static HashMap<String, Object> product_orders(
-	// 	@RequestParam(defaultValue = "all") String status,
-	// 	@RequestParam(defaultValue = "all") String timeFrame,
-	// 	@RequestParam(defaultValue = "all") String type
-	// ) {
-	// 	HashMap<String, Object> out = new HashMap<>();
-	// 	ArrayList<Object> customer_list = new ArrayList<>();
-
-	// 	HashMap<String, Object> item1 = new HashMap<>();
-	// 	item1.put("profile", "default");
-	// 	item1.put("type", "diary");
-	// 	item1.put("name", "Kotmale");
-	// 	item1.put("date", "18/05/26");
-	// 	item1.put("time", "09:30");
-	// 	item1.put("status", "delivered");
-	// 	item1.put("additional", new HashMap<String, Object>());
-
-	// 	HashMap<String, Object> item2 = new HashMap<>();
-	// 	item2.put("profile", "default");
-	// 	item2.put("name", "Kist");
-	// 	item2.put("date", "18/05/26");
-	// 	item2.put("time", "11:45");
-	// 	item2.put("status", "in-trasit");
-	// 	item2.put("additional", new HashMap<String, Object>());
-
-	// 	customer_list.add(item1);
-	// 	customer_list.add(item2);
-	// 	out.put("customer_orders", customer_list);
-
-	// 	return out;
-	// }
-
-
 	public static void main(String[] args) {
-		SpringApplication.run(GroceryOnlineApplication.class, args);
+		SpringApplication.run(AdminController.class, args);
 	}
 
 }

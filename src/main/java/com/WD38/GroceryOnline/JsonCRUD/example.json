@@ -1,0 +1,37 @@
+[ {
+  "customerName" : "Emily Davis",
+  "id" : 4,
+  "isCustomer" : false,
+  "items" : [ {
+    "itemName" : "bread",
+    "quantity" : 8,
+    "unitPrice" : 32.0,
+    "productID" : "PID023",
+    "itemDetails" : "bread x 8 @ Rs.32.0 = Rs.256.0"
+  }, {
+    "itemName" : "butter",
+    "quantity" : 2,
+    "unitPrice" : 14.0,
+    "productID" : "PID021",
+    "itemDetails" : "butter x 2 @ Rs.14.0 = Rs.28.0"
+  } ],
+  "status" : "packing"
+}, {
+  "customerName" : "Michael Brown",
+  "id" : 3,
+  "isCustomer" : false,
+  "items" : [ {
+    "itemName" : "milk",
+    "quantity" : 3,
+    "unitPrice" : 18.0,
+    "productID" : "PID015",
+    "itemDetails" : "milk x 3 @ Rs.18.0 = Rs.54.0"
+  }, {
+    "itemName" : "cheese",
+    "quantity" : 1,
+    "unitPrice" : 10.0,
+    "productID" : "PID016",
+    "itemDetails" : "cheese x 1 @ Rs.10.0 = Rs.10.0"
+  } ],
+  "status" : "delivered"
+} ]
